@@ -31,7 +31,7 @@
 
 例如：
 123cd /h/mongodb/mkdir db mkdir log">
-<meta property="og:updated_time" content="2015-12-06T06:08:08.174Z">
+<meta property="og:updated_time" content="2015-12-06T06:22:57.208Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="mongodb使用笔记">
 <meta name="twitter:description" content="为工作和学习速查，仅用于笔记，暂不解释。
@@ -295,6 +295,11 @@
 <blockquote>
 <p>注意：如果要移除服务需要先停止服务。</p>
 </blockquote>
+<h2 id="创建一个数据库">创建一个数据库</h2><p>切换到之前创建的db目录并创建一个文件夹作为我们的数据库存储目录例如blog,然后切换到mongodb的安装目录下面的bin目录,运行:<code>mongod –dbpath ../db/blog/</code><br>整体操作如下:</p>
+<figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">cd</span> <span class="keyword">db</span>/</span><br><span class="line"><span class="keyword">mkdir</span> blog</span><br><span class="line"><span class="keyword">cd</span> ../bin/</span><br><span class="line">mongod --dbpath ../<span class="keyword">db</span>/blog/</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>以上命令的意思是：设置blog文件为我们的工程存储目录并启动数据库</p>
+</blockquote>
 
       
       
@@ -307,7 +312,7 @@
   <p><span>本文标题:</span><a href="/2015/12/06/mongodb使用笔记/">mongodb使用笔记</a></p>
   <p><span>文章作者:</span><a href="/" title="访问 小周 的个人博客">小周</a></p>
   <p><span>发布时间:</span>2015年12月06日 - 11时09分</p>
-  <p><span>最后更新:</span>2015年12月06日 - 14时08分</p>
+  <p><span>最后更新:</span>2015年12月06日 - 14时22分</p>
   <p>
     <span>原始链接:</span><a href="/2015/12/06/mongodb使用笔记/" title="mongodb使用笔记">http://zhouxinyong.github.io/2015/12/06/mongodb使用笔记/</a>
     <span class="btn" data-clipboard-text="原文: http://zhouxinyong.github.io/2015/12/06/mongodb使用笔记/　　作者: 小周" title="点击复制文章链接">
@@ -351,7 +356,7 @@
 <!-- Show TOC and tocButton in default, Hide TOC via putting "toc: false" before "---" at [post].md -->
 <div id="toc" class="toc-article">
 <strong class="toc-title">文章目录</strong>
-<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#安装mongodb"><span class="toc-number">1.</span> <span class="toc-text">安装mongodb</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#windows安装"><span class="toc-number">1.1.</span> <span class="toc-text">windows安装</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#启动mongodb"><span class="toc-number">2.</span> <span class="toc-text">启动mongodb</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#创建目录"><span class="toc-number">2.1.</span> <span class="toc-text">创建目录</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#创建配置文件"><span class="toc-number">2.2.</span> <span class="toc-text">创建配置文件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#创建mongodb系统服务"><span class="toc-number">2.3.</span> <span class="toc-text">创建mongodb系统服务</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#启动mongodb服务"><span class="toc-number">2.4.</span> <span class="toc-text">启动mongodb服务</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#停止和移除mongodb服务"><span class="toc-number">2.5.</span> <span class="toc-text">停止和移除mongodb服务</span></a></li></ol></li></ol>
+<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#安装mongodb"><span class="toc-number">1.</span> <span class="toc-text">安装mongodb</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#windows安装"><span class="toc-number">1.1.</span> <span class="toc-text">windows安装</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#启动mongodb"><span class="toc-number">2.</span> <span class="toc-text">启动mongodb</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#创建目录"><span class="toc-number">2.1.</span> <span class="toc-text">创建目录</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#创建配置文件"><span class="toc-number">2.2.</span> <span class="toc-text">创建配置文件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#创建mongodb系统服务"><span class="toc-number">2.3.</span> <span class="toc-text">创建mongodb系统服务</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#启动mongodb服务"><span class="toc-number">2.4.</span> <span class="toc-text">启动mongodb服务</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#停止和移除mongodb服务"><span class="toc-number">2.5.</span> <span class="toc-text">停止和移除mongodb服务</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#创建一个数据库"><span class="toc-number">3.</span> <span class="toc-text">创建一个数据库</span></a></li></ol>
 </div>
 <style type="text/css">
   .left-col .switch-btn {
