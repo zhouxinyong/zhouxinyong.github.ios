@@ -2,14 +2,14 @@ require([], function (){
 
     var isMobileInit = false;
     var loadMobile = function(){
-        require(['/js/mobile.js'], function(mobile){
+        require([yiliaConfig.rootUrl + 'js/mobile.js'], function(mobile){
             mobile.init();
             isMobileInit = true;
         });
     }
     var isPCInit = false;
     var loadPC = function(){
-        require(['/js/pc.js'], function(pc){
+        require([yiliaConfig.rootUrl + 'js/pc.js'], function(pc){
             pc.init();
             isPCInit = true;
         });
@@ -55,14 +55,19 @@ require([], function (){
 
     //是否使用fancybox
     if(yiliaConfig.fancybox === true){
-        require(['/fancybox/jquery.fancybox.js'], function(pc){
+        require([yiliaConfig.rootUrl + 'fancybox/jquery.fancybox.js'], function(pc){
             var isFancy = $(".isFancy");
             if(isFancy.length != 0){
                 var imgArr = $(".article-inner img");
                 for(var i=0,len=imgArr.length;i<len;i++){
                     var src = imgArr.eq(i).attr("src");
                     var title = imgArr.eq(i).attr("alt");
-                    imgArr.eq(i).replaceWith("<a href='"+src+"' title='"+title+"' rel='fancy-group' class='fancy-ctn fancybox'><img src='"+src+"' title='"+title+"'></a>");
+                    if(typeof(title) == "undefined"){
+                        var title = imgArr.eq(i).attr("title");
+                    }
+                    var width = imgArr.eq(i).attr("width");
+                    var height = imgArr.eq(i).attr("height");
+                    imgArr.eq(i).replaceWith("<a href='"+src+"' title='"+title+"' rel='fancy-group' class='fancy-ctn fancybox'><img src='"+src+"' width="+width+" height="+height+" title='"+title+"' alt='"+title+"'></a>");
                 }
                 $(".article-inner .fancy-ctn").fancybox();
             }
@@ -71,14 +76,6 @@ require([], function (){
     }
     //是否开启动画
     if(yiliaConfig.animate === true){
-
-        require(['/js/jquery.lazyload.js'], function(){
-            //avatar
-            $(".js-avatar").attr("src", $(".js-avatar").attr("lazy-src"));
-            $(".js-avatar")[0].onload = function(){
-                $(".js-avatar").addClass("show");
-            }
-        });
 
       if(yiliaConfig.isHome === true) {
         // 滚动条监听使用scrollreveal.js
@@ -140,7 +137,7 @@ require([], function (){
     if(yiliaConfig.open_in_new == true){
         $(".article a[href]").attr("target", "_blank")
     }
-    $(".archive-article-title").attr("target", "_blank");
+    $(".archive-article-title, .github-widget a").attr("target", "_blank");
 
     //随机颜色
     var colorList = ["#6da336", "#ff945c", "#66CC66", "#99CC99", "#CC6666", "#76becc", "#c99979", "#918597", "#4d4d4d"];
@@ -149,4 +146,35 @@ require([], function (){
     $("#container .left-col .overlay").css({"background-color": colorList[id],"opacity": .3});
     //移动端
     $("#container #mobile-nav .overlay").css({"background-color": colorList[id],"opacity": .7});
+
+    $("table").wrap("<div class='table-area'></div>");
+
+    // Hide Comment Button
+    $(document).ready(function() {
+        if ($("#comments").length < 1) {
+            $("#scroll > a:nth-child(2)").hide();
+        };
+    })
+
+    // Hide Labels
+    if(yiliaConfig.isArchive || yiliaConfig.isTag || yiliaConfig.isCategory) {
+        $(document).ready(function() {
+            $("#footer").after("<button class='hide-labels'>TAGS</button>");
+            $(".hide-labels").click(function() {
+                $(".article-info").toggle(200);
+            });
+        });
+    }
+
+    if ($("#GitHub").length) {
+        $.ajax({
+            url: yiliaConfig.rootUrl + 'img/GitHub.png',
+            type: 'HEAD',
+            error: function() {
+                var setUrl = "url(" + yiliaConfig.rootUrl + "img/github.png)"
+                $("#header #GitHub").css("background-image", setUrl);
+            }
+        });
+    }
+
 });
